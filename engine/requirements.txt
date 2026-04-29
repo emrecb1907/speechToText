@@ -1,0 +1,3 @@
+# The first implementation uses only Python standard-library modules.
+# Production packaging will add argostranslate and the platform-specific
+# whisper.cpp/ffmpeg binaries through the bundled assets directory.

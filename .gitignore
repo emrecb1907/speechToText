@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.neon-data/
+.pycache/
+__pycache__/
+*.pyc
+
+.DS_Store
+
+src-tauri/target/
+src-tauri/gen/
+src-tauri/binaries/neon-engine-*
+
+assets/models/whisper/*.bin
+assets/translate/argos/*.argosmodel
+assets/ffmpeg/macos/ffmpeg
+assets/ffmpeg/windows/ffmpeg.exe

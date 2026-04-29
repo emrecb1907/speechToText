@@ -1,0 +1,31 @@
+{
+  "assets": [
+    {
+      "id": "whisper-large-v3-turbo-q8",
+      "label": "Yerel altyazı motoru",
+      "path": "assets/models/whisper/ggml-large-v3-turbo-q8_0.bin",
+      "required": true,
+      "sha256": "317eb69c11673c9de1e1f0d459b253999804ec71ac4c23c17ecf5fbe24e259a1"
+    },
+    {
+      "id": "argos-tr-en",
+      "label": "Yerel çeviri paketleri",
+      "path": "assets/translate/argos",
+      "required": true
+    },
+    {
+      "id": "ffmpeg-macos",
+      "label": "FFmpeg macOS binary",
+      "path": "assets/ffmpeg/macos/ffmpeg",
+      "required": false,
+      "sha256": "b68f795f7fb4528daf697f57a2b6780846a1ae762a71907e994442ad103ee88f"
+    },
+    {
+      "id": "ffmpeg-windows",
+      "label": "FFmpeg Windows binary",
+      "path": "assets/ffmpeg/windows/ffmpeg.exe",
+      "required": false,
+      "sha256": "1a65d5b0b10d8d9a81d2824a3538046a40ed3607c906b335a166add87613f705"
+    }
+  ]
+}
