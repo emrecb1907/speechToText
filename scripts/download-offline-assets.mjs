@@ -10,6 +10,12 @@ const argosDir = join(root, "assets", "translate", "argos");
 const whisperPath = join(root, "assets", "models", "whisper", "ggml-large-v3-turbo-q8_0.bin");
 const ffmpegMacZip = join(root, "assets", "ffmpeg", "macos", "ffmpeg.zip");
 const ffmpegWinZip = join(root, "assets", "ffmpeg", "windows", "ffmpeg.zip");
+const ffmpegMacBinary = join(root, "assets", "ffmpeg", "macos", "ffmpeg");
+const ffmpegWinBinary = join(root, "assets", "ffmpeg", "windows", "ffmpeg.exe");
+const deepFilterModelPath = join(root, "assets", "deepfilter", "models", "DeepFilterNet3_onnx.tar.gz");
+const deepFilterMacArmPath = join(root, "assets", "deepfilter", "macos-aarch64", "deep-filter");
+const deepFilterMacX64Path = join(root, "assets", "deepfilter", "macos-x64", "deep-filter");
+const deepFilterWinX64Path = join(root, "assets", "deepfilter", "windows-x64", "deep-filter.exe");
 const manifestPath = join(root, "assets", "manifest.json");
 
 const downloads = [
@@ -21,12 +27,34 @@ const downloads = [
   {
     label: "FFmpeg macOS",
     url: "https://evermeet.cx/ffmpeg/getrelease/zip",
-    path: ffmpegMacZip
+    path: ffmpegMacZip,
+    skipIfExists: ffmpegMacBinary
   },
   {
     label: "FFmpeg Windows",
     url: "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip",
-    path: ffmpegWinZip
+    path: ffmpegWinZip,
+    skipIfExists: ffmpegWinBinary
+  },
+  {
+    label: "DeepFilterNet3 model",
+    url: "https://raw.githubusercontent.com/Rikorose/DeepFilterNet/main/models/DeepFilterNet3_onnx.tar.gz",
+    path: deepFilterModelPath
+  },
+  {
+    label: "DeepFilterNet macOS ARM",
+    url: "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-aarch64-apple-darwin",
+    path: deepFilterMacArmPath
+  },
+  {
+    label: "DeepFilterNet macOS Intel",
+    url: "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-x86_64-apple-darwin",
+    path: deepFilterMacX64Path
+  },
+  {
+    label: "DeepFilterNet Windows x64",
+    url: "https://github.com/Rikorose/DeepFilterNet/releases/download/v0.5.6/deep-filter-0.5.6-x86_64-pc-windows-msvc.exe",
+    path: deepFilterWinX64Path
   }
 ];
 
@@ -127,6 +155,12 @@ function extractFfmpeg() {
   }
 }
 
+function chmodDeepFilter() {
+  for (const binary of [deepFilterMacArmPath, deepFilterMacX64Path]) {
+    if (existsSync(binary)) execFileSync("chmod", ["+x", binary], { stdio: "inherit" });
+  }
+}
+
 function updateManifest() {
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
   for (const item of manifest.assets) {
@@ -139,10 +173,15 @@ function updateManifest() {
 }
 
 for (const item of downloads) {
+  if (item.skipIfExists && existsSync(item.skipIfExists) && statSync(item.skipIfExists).size > 0) {
+    console.log(`skip ${item.label}: ${item.skipIfExists}`);
+    continue;
+  }
   await download(item.url, item.path, item.label);
 }
 
 await downloadArgosPackages();
 extractFfmpeg();
+chmodDeepFilter();
 updateManifest();
 console.log("offline assets ready");

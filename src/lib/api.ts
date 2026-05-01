@@ -1,4 +1,4 @@
-import type { AssetStatus, CreateJobPayload, Job, SubtitleSegment } from "./types";
+import type { AssetStatus, CreateJobPayload, ExportJobPayload, Job, SubtitleSegment } from "./types";
 
 const API_BASE = "http://127.0.0.1:43187";
 
@@ -39,14 +39,20 @@ export const api = {
     request<{ job: Job }>(`/jobs/${jobId}/start`, {
       method: "POST"
     }),
+  cancelJob: (jobId: string) =>
+    request<{ job: Job }>(`/jobs/${jobId}/cancel`, {
+      method: "POST"
+    }),
   segments: (jobId: string) => request<{ segments: SubtitleSegment[] }>(`/jobs/${jobId}/segments`),
   saveSegments: (jobId: string, segments: SubtitleSegment[]) =>
     request<{ ok: boolean }>(`/jobs/${jobId}/segments`, {
       method: "PUT",
       body: JSON.stringify({ segments })
     }),
-  exportJob: (jobId: string) =>
+  mediaUrl: (jobId: string) => `${API_BASE}/jobs/${jobId}/media`,
+  exportJob: (jobId: string, payload: ExportJobPayload) =>
     request<{ job: Job; files: string[] }>(`/jobs/${jobId}/export`, {
-      method: "POST"
+      method: "POST",
+      body: JSON.stringify(payload)
     })
 };

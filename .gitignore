@@ -10,6 +10,8 @@ __pycache__/
 src-tauri/target/
 src-tauri/gen/
 src-tauri/binaries/neon-engine-*
+!src-tauri/binaries/neon-engine-aarch64-apple-darwin
+!src-tauri/binaries/neon-engine-x86_64-apple-darwin
 
 assets/models/whisper/*.bin
 assets/translate/argos/*.argosmodel

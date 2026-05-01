@@ -8,6 +8,48 @@
       "sha256": "317eb69c11673c9de1e1f0d459b253999804ec71ac4c23c17ecf5fbe24e259a1"
     },
     {
+      "id": "whisper-cpp-macos",
+      "label": "Yerel transkripsiyon calistiricisi",
+      "path": "assets/whispercpp/macos/whisper-cli",
+      "required": true,
+      "sha256": "b3fbb6f92f908d6f79ae10a301039e7a70716b23a0597d3290196299f0a3a2e3"
+    },
+    {
+      "id": "speech-vad",
+      "label": "Yerel konusma ayirma katmani",
+      "path": "assets/models/vad/ggml-silero-v6.2.0.bin",
+      "required": true,
+      "sha256": "2aa269b785eeb53a82983a20501ddf7c1d9c48e33ab63a41391ac6c9f7fb6987"
+    },
+    {
+      "id": "speech-enhancer-model",
+      "label": "Yerel ses temizleme modeli",
+      "path": "assets/deepfilter/models/DeepFilterNet3_onnx.tar.gz",
+      "required": false,
+      "sha256": "c94d91f70911001c946e0fabb4aa9adc37045f45a03b56008cb0c8244cb63616"
+    },
+    {
+      "id": "speech-enhancer-macos-arm64",
+      "label": "Yerel ses temizleme katmani macOS ARM",
+      "path": "assets/deepfilter/macos-aarch64/deep-filter",
+      "required": false,
+      "sha256": "4601e7f4e4c03e59a4c5b5000216ef3add3e808799cfccd95e14e83ea4611081"
+    },
+    {
+      "id": "speech-enhancer-macos-x64",
+      "label": "Yerel ses temizleme katmani macOS Intel",
+      "path": "assets/deepfilter/macos-x64/deep-filter",
+      "required": false,
+      "sha256": "d3be84003acb7c23e738ad7f70a158ec779a8d233a82e7fa3e717d112eb5b50f"
+    },
+    {
+      "id": "speech-enhancer-windows-x64",
+      "label": "Yerel ses temizleme katmani Windows",
+      "path": "assets/deepfilter/windows-x64/deep-filter.exe",
+      "required": false,
+      "sha256": "75e11fa16445f560cb6b021521ddb89e89270d13b83089705d98776f58fd7915"
+    },
+    {
       "id": "argos-tr-en",
       "label": "Yerel çeviri paketleri",
       "path": "assets/translate/argos",

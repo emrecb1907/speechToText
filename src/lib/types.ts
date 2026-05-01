@@ -51,6 +51,7 @@ export interface SubtitleSegment {
   speaker_label: string;
   confidence: number;
   locked: boolean;
+  timing_offset_ms?: number;
 }
 
 export interface Job {
@@ -58,6 +59,7 @@ export interface Job {
   video_path: string;
   source_language: LanguageCode;
   target_language: LanguageCode;
+  translation_enabled: boolean;
   outputs: string[];
   status: JobStatus;
   progress: number;
@@ -70,5 +72,12 @@ export interface CreateJobPayload {
   video_path: string;
   source_language: LanguageCode;
   target_language: LanguageCode;
+  translation_enabled: boolean;
   outputs: string[];
+}
+
+export interface ExportJobPayload {
+  outputs: string[];
+  output_dir?: string;
+  base_name?: string;
 }
