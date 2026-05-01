@@ -11,8 +11,16 @@
       "id": "whisper-cpp-macos",
       "label": "Yerel transkripsiyon calistiricisi",
       "path": "assets/whispercpp/macos/whisper-cli",
-      "required": true,
+      "required": false,
+      "required_on": ["macos"],
       "sha256": "b3fbb6f92f908d6f79ae10a301039e7a70716b23a0597d3290196299f0a3a2e3"
+    },
+    {
+      "id": "whisper-cpp-windows",
+      "label": "Yerel transkripsiyon calistiricisi Windows",
+      "path": "assets/whispercpp/windows/whisper-cli.exe",
+      "required": false,
+      "required_on": ["windows"]
     },
     {
       "id": "speech-vad",
@@ -53,13 +61,15 @@
       "id": "argos-tr-en",
       "label": "Yerel çeviri paketleri",
       "path": "assets/translate/argos",
-      "required": true
+      "required": true,
+      "contains": "*.argosmodel"
     },
     {
       "id": "ffmpeg-macos",
       "label": "FFmpeg macOS binary",
       "path": "assets/ffmpeg/macos/ffmpeg",
       "required": false,
+      "required_on": ["macos"],
       "sha256": "b68f795f7fb4528daf697f57a2b6780846a1ae762a71907e994442ad103ee88f"
     },
     {
@@ -67,6 +77,7 @@
       "label": "FFmpeg Windows binary",
       "path": "assets/ffmpeg/windows/ffmpeg.exe",
       "required": false,
+      "required_on": ["windows"],
       "sha256": "1a65d5b0b10d8d9a81d2824a3538046a40ed3607c906b335a166add87613f705"
     }
   ]

@@ -1,5 +1,7 @@
 node_modules/
 dist/
+build/
+release/
 .neon-data/
 .pycache/
 __pycache__/

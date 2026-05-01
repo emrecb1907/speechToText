@@ -5,11 +5,17 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR=""
 
 for CANDIDATE in \
+  "${NEON_STUDIO_ROOT:-}" \
+  "$SCRIPT_DIR/../Resources" \
+  "$SCRIPT_DIR/../../Resources" \
   "$SCRIPT_DIR/../.." \
   "$SCRIPT_DIR/../../.." \
   "$SCRIPT_DIR/../../../.." \
   "$(pwd)" \
   "$(pwd)/.."; do
+  if [ -z "$CANDIDATE" ]; then
+    continue
+  fi
   if [ -f "$CANDIDATE/engine/main.py" ]; then
     ROOT_DIR="$(cd "$CANDIDATE" && pwd)"
     break
@@ -21,5 +27,13 @@ if [ -z "$ROOT_DIR" ]; then
   exit 1
 fi
 
-export NEON_STUDIO_DATA="${NEON_STUDIO_DATA:-$ROOT_DIR/.neon-data}"
+if [ -z "${NEON_STUDIO_DATA:-}" ]; then
+  if [[ "$SCRIPT_DIR" == *".app/Contents/MacOS"* ]] || [[ "$ROOT_DIR" == *"/Resources" ]]; then
+    export NEON_STUDIO_DATA="$HOME/Library/Application Support/Neon Subtitle Studio"
+  else
+    export NEON_STUDIO_DATA="$ROOT_DIR/.neon-data"
+  fi
+fi
+mkdir -p "$NEON_STUDIO_DATA"
+export PYTHONPATH="$ROOT_DIR/engine:${PYTHONPATH:-}"
 exec python3 "$ROOT_DIR/engine/main.py" --dev

@@ -1,4 +1,4 @@
-import type { AssetStatus, CreateJobPayload, ExportJobPayload, Job, SubtitleSegment } from "./types";
+import type { AssetStatus, AudioTrack, CreateJobPayload, ExportJobPayload, Job, SubtitleSegment } from "./types";
 
 const API_BASE = "http://127.0.0.1:43187";
 
@@ -29,6 +29,11 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export const api = {
   health: () => request<{ ok: boolean; mode: string }>("/health"),
   assets: () => request<AssetStatus>("/assets/status"),
+  mediaInfo: (videoPath: string) =>
+    request<{ audio_tracks: AudioTrack[] }>("/media-info", {
+      method: "POST",
+      body: JSON.stringify({ video_path: videoPath })
+    }),
   jobs: () => request<{ jobs: Job[] }>("/jobs"),
   createJob: (payload: CreateJobPayload) =>
     request<{ job: Job }>("/jobs", {
