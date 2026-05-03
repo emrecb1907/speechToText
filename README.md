@@ -2,6 +2,8 @@
 
 Full offline desktop subtitle studio. The current production bundle target is macOS; Windows packaging needs a Windows engine sidecar and whisper.cpp binary before it is enabled again.
 
+![Neon Subtitle Studio screenshot](screenshot.png)
+
 ## What is implemented
 
 - Tauri 2 project scaffold.
