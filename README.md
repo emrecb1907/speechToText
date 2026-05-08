@@ -2,7 +2,7 @@
 
 Full offline desktop subtitle studio. The current production bundle target is macOS; Windows packaging needs a Windows engine sidecar and whisper.cpp binary before it is enabled again.
 
-![Neon Subtitle Studio screenshot](screenshot.png)
+![Neon Studio logo](neon-studio-logo.png)
 
 ## What is implemented
 
@@ -17,6 +17,10 @@ Full offline desktop subtitle studio. The current production bundle target is ma
 - SRT/VTT export path from editable subtitle segments.
 - macOS DMG packaging with bundled assets and engine sidecar.
 - Engine lifecycle cleanup on app start and app exit.
+
+## Preview
+
+![Neon Subtitle Studio screenshot](screenshot.png)
 
 ## Local development
 
